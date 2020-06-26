@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const pages = require('./routes/pages')
+const series = require('./routes/series')
+
 const port = process.env.PORT || 3000
 const mongo = process.env.MONGODB || 'mongodb://localhost/minha-series'
 
@@ -19,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.use('/', pages)
-app.get('/series', (req, res) => res.render('series'))
+app.use('/series', series)
 
 
 mongoose
