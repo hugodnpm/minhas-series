@@ -14,7 +14,13 @@
                             <%= serie.name %>
                         </td>
                         <td>
-                            <%= serie.status %>
+                            <h3><span class="badge badge-secondary">
+                                <%= labels.filter( label => label.id === serie.status )[0].name %>
+                            </span></h3>
+                        </td>
+                        <td>
+                            <a href="/series/editar/<%= serie._id %>" class="btn btn-info">Editar</a> |
+                            <a href="/series/excluir/<%= serie._id %>" class="btn btn-info">Excluir</a>
                         </td>
                         <% }) %>
 
