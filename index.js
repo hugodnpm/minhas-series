@@ -2,13 +2,15 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const pages = require('./routes/pages')
 const port = process.env.PORT || 3000
 const mongo = process.env.MONGODB || 'mongodb://localhost/minha-series'
 
 const mongoose = require('mongoose')
+
 mongoose.Promise = global.Promise
 // process request body
-app.use(bodyParser.urlencode({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 // assets
 app.use(express.static('public'))
 
@@ -16,7 +18,9 @@ app.use(express.static('public'))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res) => res.send('ok'))
+app.use('/', pages)
+app.get('/series', (req, res) => res.render('series'))
+
 
 mongoose
     .connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true })
