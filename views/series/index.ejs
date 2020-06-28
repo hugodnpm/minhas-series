@@ -11,7 +11,7 @@
                     <% series.forEach( serie => { %>
                     <tr>
                         <td>
-                            <%= serie.name %>
+                          <a href="/series/info/<%=serie._id %>"><%= serie.name %></a>
                         </td>
                         <td>
                             <h3><span class="badge badge-secondary">
@@ -21,6 +21,7 @@
                         <td>
                             <a href="/series/editar/<%= serie._id %>" class="btn btn-info">Editar</a> |
                             <a href="/series/excluir/<%= serie._id %>" class="btn btn-info">Excluir</a>
+                            <a href="/series/info/<%= serie._id %>" class="btn btn-info">Comentários</a>
                         </td>
                         <% }) %>
 

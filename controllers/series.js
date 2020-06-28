@@ -20,7 +20,7 @@ const novaProcess = async ({ Serie }, req, res) => {
     }
 }
 const novaForm = (req, res) => {
-    res.render('series/nova')
+    res.render('series/nova', { erros: [] })
 }
 const excluir = async ({ Serie }, req, res) => {
     await Serie.remove({ _id: req.params.id })
@@ -39,9 +39,24 @@ const editarProcess = async ({ Serie }, req, res) => {
 }
 const editarForm = async ({ Serie }, req, res) => {
     const serie = await Serie.findOne({ _id: req.params.id })
-    res.render('series/editar', { serie, labels })
+    res.render('series/editar', { serie, labels, errors: [] })
+}
+const info = async ({ Serie }, req, res) => {
+    const serie = await Serie.findOne({ _id: req.params.id })
+    res.render('series/info', { serie })
+}
+const addComentario = async ({ Serie }, req, res) => {
+    await Serie.updateOne({ _id: req.params.id}, {$push: { comments:req.body.comentario }})
+    res.redirect('/series/info/' + req.params.id)
 }
 
 module.exports = {
-    index, novaProcess, novaForm, excluir, editarForm, editarProcess
+    index,
+    novaProcess,
+    novaForm,
+    excluir,
+    editarForm,
+    editarProcess,
+    info,
+    addComentario
 }
