@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 
 const SerieSchema = mongoose.Schema({
-    name: String,
-    status:{
+    name: {
+        type: String,
+        required: true
+    },
+    status: {
         type: String,
         enumValues: ['to-watch', 'watching', 'watched']
     },

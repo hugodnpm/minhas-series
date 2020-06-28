@@ -9,9 +9,12 @@
                     <h2>Nova Séries</h2>
                     <div class="form-group">
                         <label for="name">Nome da Série:</label>
-                        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="namelHelp"
-                            placeholder="Informe o nome">
+                        <input name="name" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="namelHelp" placeholder="Informe o nome">
                         <small id="nameHelp" class="form-text text-muted">Nome da Séria a ser salvo.</small>
+                        <% if ('erros' && 'erros.name') { %>
+                            <small id="nameHelp" class="form-text text-muted">Nome da Série é necessário!!</small>
+                          <% } %>
                     </div>
                     <div class="form-group">
                         <label for="status"> Situação:</label>
@@ -19,7 +22,7 @@
                             <option value="to-watch">Para Assistir</option>
                             <option value="watching">Assistindo</option>
                             <option value="watched">Assitido</option>
-                            
+
                         </select>
                     </div>
                     <button class="btn btn-primary">Salvar</button>
